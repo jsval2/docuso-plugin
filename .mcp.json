@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "docuso": {
+      "type": "http",
+      "url": "https://docu.so/mcp",
+      "headers": { "X-API-Key": "${DOCUSO_API_KEY}" }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "docuso",
+  "description": "Markdown becomes anything. Create, edit, publish and list docu.so documents, and turn one sentence into a published, branded page from a template.",
+  "version": "1.0.0",
+  "author": { "name": "docu.so" },
+  "homepage": "https://docu.so",
+  "repository": "https://github.com/jsval2/docuso-plugin",
+  "keywords": ["docuso", "markdown", "publishing", "documents", "landing-page"]
+}

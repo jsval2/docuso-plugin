@@ -1,0 +1,11 @@
+{
+  "name": "docuso-plugin",
+  "owner": { "name": "docu.so", "url": "https://docu.so" },
+  "plugins": [
+    {
+      "name": "docuso",
+      "source": "./",
+      "description": "Markdown becomes anything. Create, edit, publish and list docu.so documents from Claude Code, and turn one sentence into a published, branded page."
+    }
+  ]
+}
