@@ -44,6 +44,9 @@ curl -s "${DOCUSO_API_URL}/api/v1/brands" -H "X-API-Key: ${DOCUSO_API_KEY}"
 
 - If the user named a brand ("in our Company 1 styling"), match it by `name`, case-insensitively.
 - Otherwise take the one with `is_default: true`.
+- **No brand is marked default but the account has some** — that happens, and it is not a reason to publish
+  an unbranded page. One brand: use it. Several: use the one whose `name` best matches what the user is
+  writing about, and failing that the most recently updated. Say which one you used and why, in one line.
 - If the account has no brands at all, carry on without one and say at the end that the page is in the
   default look and that a brand preset in the dashboard will restyle it with no edit to the page.
 
