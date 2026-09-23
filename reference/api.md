@@ -38,7 +38,7 @@ Do not retry automatically. The one exception is a 429, retried once after its `
 |---|---|
 | `GET /api/v1/syntax?format=markdown` | The markdown dialect docu.so understands, generated from the live registries. Public, no key needed. **Read it before writing markdown; never work from memory.** |
 | `GET /api/v1/templates` | Every template: `id`, `name`, `description`, `mode`, `blocks`, `schema.sections`, `schema.required`, `starter`. Public, no key needed. |
-| `GET /api/v1/brands` | The account's brand presets. One of them has `is_default: true`. |
+| `GET /api/v1/brands` | The account's brand presets, each with `id`, `name` and `is_default`. At most one is the default, and an account can have none — see *Choosing a brand*. |
 | `POST /api/v1/documents` | Create. Body: `title`, `markdown`, and optionally `template`, `brand_profile_id`, `mode`. |
 | `GET /api/v1/documents` | List. `?page=` and `?limit=` walk the pages; a row carries no `markdown`. |
 | `GET /api/v1/documents/:id` | One document, `markdown` included. |
@@ -46,6 +46,20 @@ Do not retry automatically. The one exception is a 429, retried once after its `
 | `POST /api/v1/documents/:id/publish` | Publish. Answers with the document, now carrying a live `url`. |
 | `POST /api/v1/documents/:id/unpublish` | Unpublish. The `url` goes back to `null` and the link stops working. |
 | `DELETE /api/v1/documents/:id` | Delete. 204, no body. Gone for good. |
+
+## Choosing a brand
+
+A document takes its look from the brand preset named in `brand_profile_id`; without one it renders
+in the base look, however good the account's brand book is. From `GET /api/v1/brands`:
+
+1. If the user named a brand ("in our Company 1 styling"), match it by `name`, case-insensitively.
+2. Otherwise take the one with `is_default: true`.
+3. **None is marked default but the account has some** — that happens, and it is not a reason to
+   leave the document unbranded. One brand: use it. Several: the one whose `name` best matches what
+   the document is about, and failing that the most recently updated. Say which one you used and why,
+   in one line.
+4. No brands at all: send no `brand_profile_id`, and say that a brand preset in the dashboard will
+   restyle the document with no edit to it.
 
 ## Writing markdown for docu.so
 
@@ -57,7 +71,7 @@ Do not retry automatically. The one exception is a 429, retried once after its `
   deliberately carries no copy of the dialect, because the registry it comes from grows.
 - A document's markdown is capped at **65,536 characters**; over that the API answers 422 naming
   `markdown`. Trim before sending rather than letting the save fail.
-- Titles stay under 100 characters.
+- A title is at most **200 characters**; over that the API answers 422 naming `title`.
 
 ## Calling it
 

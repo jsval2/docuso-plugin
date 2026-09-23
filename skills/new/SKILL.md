@@ -40,7 +40,7 @@ It is generated from docu.so's live registry, so it is the only description of t
 from — do not write a block from memory and do not invent attributes. Ordinary markdown (headings,
 lists, tables, links, code) always works.
 
-Content only: no HTML, no CSS. A clear `# Title` first, then `##` sections. Keep the title under 100
+Content only: no HTML, no CSS. A clear `# Title` first, then `##` sections. Keep the title to 200
 characters and the markdown under 65,536.
 
 ## Step 3 — create it
@@ -60,9 +60,10 @@ curl -s -X POST "${DOCUSO_API_URL}/api/v1/documents" \
 The document is at `.data`: take its `id` and `shortcode`. A failure is `error.code` and
 `error.message` — say what that code means; only a 401 is about the API key.
 
-**To brand it or to give it a template**, send `brand_profile_id` (from `GET /api/v1/brands`, the one
-with `is_default: true`) and `template` (an `id` from `GET /api/v1/templates`) in the same body.
-Without a brand the document renders in the base look.
+**To brand it or to give it a template**, send `brand_profile_id` (from `GET /api/v1/brands`, chosen
+as `reference/api.md` says under *Choosing a brand* — there is not always a default) and `template`
+(an `id` from `GET /api/v1/templates`) in the same body. Without a brand the document renders in the
+base look.
 
 ## Step 4 — offer to publish
 

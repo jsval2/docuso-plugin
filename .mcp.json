@@ -2,7 +2,7 @@
   "mcpServers": {
     "docuso": {
       "type": "http",
-      "url": "https://docu.so/mcp",
+      "url": "${DOCUSO_API_URL}/mcp",
       "headers": { "X-API-Key": "${DOCUSO_API_KEY}" }
     }
   }
